@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+
+<body>
+  <h1>Leaderboards</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Streak</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% leaderboards.forEach((leaderboard, index) => { %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= leaderboard.streak %></td>
+          <td><%= leaderboard.date.toLocaleDateString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</body>
+</html>
