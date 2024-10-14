@@ -5,7 +5,6 @@
  */
 const questions = [];
 function getQuestion() {
-
     const operators = ['+', '-', '*', '/'];
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
@@ -30,10 +29,14 @@ function getQuestion() {
             if (num2 === 0) {
                 return getQuestion();
             }
+            if (num2 > num1) {
+                return getQuestion();
+}
             question = `${num1} / ${num2}`;
             answer = num1 / num2;
             break;
     }
+
     questions.push({ question, answer });
     return { question };
 }
@@ -46,8 +49,9 @@ function getQuestion() {
  * @returns {boolean} True if the answer was correct, false otherwise.
  */
 function isCorrectAnswer(userAnswer) {
-    const currentQuestion = questions[questions.length - 1]; // Get last question
-    return currentQuestion.answer === parseFloat(userAnswer); // Compare answer
+    const [currentQuestion] = questions.slice(-1);
+    if (!currentQuestion) return false;
+    return currentQuestion.answer === parseFloat(userAnswer);
 }
 
 module.exports = {
